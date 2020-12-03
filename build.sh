@@ -82,5 +82,3 @@ done
 
 cd $DIR
 
-docker-compose up -d
-
