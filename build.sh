@@ -60,15 +60,15 @@ if [ "$1" == "--rebuild-all" ]; then
     docker rmi minio/mc 2> /dev/null
 fi
 
+BUILDARG="--build-arg BUILDREPO=$BUILDREPO"
+if [ -n "${PROXY}" ]; then
+    BUILDARG="$BUILDARG --build-arg http_proxy=${PROXY}/ --build-arg https_proxy=${PROXY}/"
+fi
+
 for i in $MK; do
     echo $PRE Docker build local images $i...
 
     cd $SRC_REPO/$i
-
-    if [ -z "$(grep HTTP_PROXY Dockerfile)" ] && [ -n "${PROXY}" ]; then
-        sed -i.bak '/FROM/a ENV HTTP_PROXY='"${PROXY}"'/' Dockerfile
-        sed -i.bak '/FROM/a ENV HTTPS_PROXY='"${PROXY}"'/' Dockerfile
-    fi
 
     [ ! -z "${REACT_APP_BACKEND_V1_GET_URL+x}" ]  && sed -i.bak '/REACT_APP_BACKEND_V1_GET_URL=/s#=.*#='"${REACT_APP_BACKEND_V1_GET_URL}"'#' .env 2> /dev/null
     [ ! -z "${REACT_APP_BACKEND_V2_GET_URL+x}" ]  && sed -i.bak '/REACT_APP_BACKEND_V2_GET_URL=/s#=.*#='"${REACT_APP_BACKEND_V2_GET_URL}"'#' .env 2> /dev/null
@@ -76,7 +76,7 @@ for i in $MK; do
     [ ! -z "${REACT_APP_SOCKET_SERVER_URL+x}" ]   && sed -i.bak '/REACT_APP_SOCKET_SERVER_URL=/s#=.*#='"${REACT_APP_SOCKET_SERVER_URL}"'#' .env 2> /dev/null
     [ ! -z "${REACT_APP_FIREBASE_CONFIG+x}" ]     && sed -i.bak '/REACT_APP_FIREBASE_CONFIG=/s#=.*#='"${REACT_APP_FIREBASE_CONFIG}"'#' .env 2> /dev/null
 
-    docker build --build-arg BUILDREPO=$BUILDREPO -t $BUILDREPO/$i:latest .
+    docker build ${BUILDARG} -t $BUILDREPO/$i:latest .
 
 done
 
