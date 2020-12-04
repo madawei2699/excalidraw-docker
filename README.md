@@ -14,7 +14,7 @@ If you want to self-host excalidraw without the need of an Internet connection, 
 
 The benefit of this setup is, that you only need to open the outside SSL port to Nginx from the host. All other network connections are being made over the internal Docker network.
 
-The S3 datastore is being initialized on first start, so user, password and bucket will be set up for you, so you don't have to do anything here. Also, securing the access to the Minio server or the other components is not that important, because it will be reachable over the Docker overlay network only. The single containers' exposed ports are reachable from the rest of the network.
+The S3 datastore is being initialized on first start, so user, password and bucket will be set up for you, so you don't have to do anything here. Also, securing the access to the Minio server or the other components is not that important, because it will be reachable over the Docker overlay network only. The single containers' exposed ports are not reachable from the rest of the network.
 
 ## How to set this up and start?
 
