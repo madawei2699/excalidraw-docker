@@ -68,7 +68,7 @@ As you don't have the Firebase database in the background, you won't have saved 
 | BUILDREPO                       | localbuild                         | Name of local Docker image repository                        |
 | TZ                              | Europe/Berlin                      | Timezone                                                     |
 | PUB_SRV_NAME                    | example.fritz.box                  | DNS name of the host by which it is accessable over you network |
-| ENABLE_LETSENCRYPT              | 0                                  | Generate Let's Encrypt certs for Nginx via acme.sh or use your own |
+| ENABLE_LETSENCRYPT              | 0                                  | Generate Let's Encrypt certs for Nginx via acme.sh or use your own (UNTESTED, only added for convenience and later use perhaps) |
 | LETSENCRYPT_DOMAIN              | see `PUB_SRV_NAME`                 |                                                              |
 | LETSENCRYPT_EMAIL               | admin@`PUB_SRV_NAME`               |                                                              |
 | LETSENCRYPT_USE_STAGING         | 0                                  | Use Let's Encrypt staging server for testing                 |
