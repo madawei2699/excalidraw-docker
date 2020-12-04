@@ -26,11 +26,13 @@ HTTPS_PORT=443
 #PROXY=http://<user>:<password>@proxy.serv.er:<port>
 
 # URLs to access JSON sharing backend
+# BEWARE: if you changed the outside ports from standard HTTP/HTTPS, you have to add it here, too
 REACT_APP_BACKEND_V1_GET_URL=https://$PUB_SRV_NAME/api/v1/
 REACT_APP_BACKEND_V2_GET_URL=https://$PUB_SRV_NAME/api/v2/
 REACT_APP_BACKEND_V2_POST_URL=https://$PUB_SRV_NAME/api/v2/post
 
 # URLs to socket server
+# BEWARE: if you changed the outside port from standard HTTP/HTTPS, you have to add it here, too
 REACT_APP_SOCKET_SERVER_URL=https://$PUB_SRV_NAME
 
 # Firebase configuration
