@@ -16,6 +16,9 @@ The benefit of this setup is, that you only need to open the outside SSL port to
 
 The S3 datastore is being initialized on first start, so user, password and bucket will be set up for you, so you don't have to do anything here. Also, securing the access to the Minio server or the other components is not that important, because it will be reachable over the Docker overlay network only. The single containers' exposed ports are not reachable from the rest of the network.
 
+Note:
+As I wanted this to be independent of any Internet network service as far as possible, I deactivated aces to the excalidraw Firebase database per default. If you want to use this database, you have to change the `REACT_APP_FIREBASE_CONFIG` accordingly.
+
 ## How to set this up and start?
 
 Just copy the existing configuration example file `env-example` to `.env` and customize it to your needs. In most cases, you only have to setup a few variables to get it up and running. The main variable you have to configure is:
@@ -51,7 +54,7 @@ Now Nginx should serve excalidraw with your own certificates.
 
 ## What are the provided scripts for?
 
-- `build.sh` - this scripts will get all necessary Github repositories, create the folder structure and build the local Docker images for the containers
+- `build.sh` - this will get all necessary Github repositories, create the folder structure and build the local Docker images for the containers
 - `cleanup.sh` - this will do the opposite: stop stack, remove Docker images and all folders (this will also destroy the shared storage!), but it keeps your `.env` file
 
 ## How to backup?
