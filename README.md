@@ -17,7 +17,7 @@ The benefit of this setup is, that you only need to open the outside SSL port to
 The S3 datastore is being initialized on first start, so user, password and bucket will be set up for you, so you don't have to do anything here. Also, securing the access to the Minio server or the other components is not that important, because it will be reachable over the Docker overlay network only. The single containers' exposed ports are not reachable from the rest of the network.
 
 Note:
-As I wanted this to be independent of any Internet network service as far as possible, I deactivated aces to the excalidraw Firebase database per default. If you want to use this database, you have to change the `REACT_APP_FIREBASE_CONFIG` accordingly.
+As I wanted this to be independent of any Internet based network service as close as possible, I deactivated the configuration for the excalidraw Firebase database per default. If you want to use this database, you have to change the `REACT_APP_FIREBASE_CONFIG` accordingly.
 
 ## How to set this up and start?
 
