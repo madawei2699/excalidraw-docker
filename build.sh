@@ -82,3 +82,23 @@ done
 
 cd $DIR
 
+if [ ! -d $DIR/data/minio/excalidraw ]; then
+    echo $PRE Initializing S3 excalidraw storage...
+    docker-compose up -d minio
+
+    for i in {1..5}; do
+        printf '\rWaiting %2d/5 secs for Minio S3 server' $i
+        sleep 1
+    done
+    printf '\n'
+
+cat <<EOF | docker run --rm -i --entrypoint=/bin/sh --network="excalidraw-net" minio/mc
+  /usr/bin/mc config host add myminio http://minio:9000 ${EXCALIDRAW_S3_ACCESS_KEY_ID} ${EXCALIDRAW_S3_SECRET_ACCESS_KEY};
+  /usr/bin/mc mb myminio/excalidraw;
+  /usr/bin/mc policy set download myminio/excalidraw;
+  exit 0;
+EOF
+
+    docker-compose down
+fi
+

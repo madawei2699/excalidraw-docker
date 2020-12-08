@@ -17,19 +17,6 @@ services:
       timeout: 20s
       retries: 3
 
-  createbuckets:
-    image: minio/mc
-    depends_on:
-      - minio
-    entrypoint: >
-      /bin/sh -c "
-      /usr/bin/mc config host add myminio http://minio:9000 ${EXCALIDRAW_S3_ACCESS_KEY_ID} ${EXCALIDRAW_S3_SECRET_ACCESS_KEY};
-      /usr/bin/mc rm -r --force myminio/excalidraw;
-      /usr/bin/mc mb myminio/excalidraw;
-      /usr/bin/mc policy set download myminio/excalidraw;
-      exit 0;
-      "
-
   excalidraw-json:
     image: ${BUILDREPO}/excalidraw-json:latest
     depends_on:
