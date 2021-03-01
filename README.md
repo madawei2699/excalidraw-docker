@@ -33,7 +33,9 @@ Then two simple steps have to follow:
 Now, open your browser and navigate to the start page at `https://<PUB_SRV_NAME>`, add `:<HTTPS_PORT>` if necessary, like `https://my.test.server` or `https://my.test.server:8443`.
 
 Note:
-If you want to change the `HTTPS_PORT`, you do have to add the port to the values of the `REACT_APP_*` variables, too. Here is an example:
+If you want to change the `HTTPS_PORT`, you do have to add the port to the values of the `REACT_APP_*` variables and run `./build.sh` again, too!
+
+Here is an example:
 You want to change Nginx's https listening port to 8443. Set `HTTPS_PORT=8443` in `.env` and change the other variables like so:
 
 `REACT_APP_BACKEND_V1_GET_URL=https://$PUB_SRV_NAME:$HTTPS_PORT/api/v1/`
